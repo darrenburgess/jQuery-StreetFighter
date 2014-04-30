@@ -21,7 +21,7 @@
 			750,
 			function() {
 				$(this).hide();
-				$(this).css('left', '600px');
+				$(this).css('left', '475px');
 		});
 	});
 
