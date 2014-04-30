@@ -1,49 +1,37 @@
-$(document).ready(function() {
+(function($){
+	$(document).ready(function() {
 
-var stillToggle = function(){
-	$('.ryu-still').toggle();
-}
+	var toggleAnything = function(className){
+		$(className).toggle();
+	};
 
-var readyToggle = function(){
-	$('.ryu-ready').toggle();
-}
+	$('.ryu').bind('mouseenter mouseleave',function(){
+		toggleAnything('.ryu-still,.ryu-ready');
+	});
 
-var throwingToggle = function(){
-	$('.ryu-throwing').toggle();
-}
+	$('.ryu').bind('mousedown mouseup',function(){
+		toggleAnything('.ryu-ready,.ryu-throwing');
+	})
 
-var hadoukenThrow = function (){
-	hadouken = $('.hadouken');
-	hadouken.show();
+	.mousedown(function(){
+		playHadouken();
+		$('.hadouken').finish().show()
+		.animate(
+			{'left': '1000px'},
+			750,
+			function() {
+				$(this).hide();
+				$(this).css('left', '600px');
+		});
+	});
 
-}
+	function playHadouken() {
+		$('#hadouken-sound')[0].volume = 0.05;
+		$('#hadouken-sound')[0].load();
+		$('#hadouken-sound')[0].play();
+	}
 
-$('.ryu').bind('mouseenter mouseleave',function(){
-	stillToggle();
-	readyToggle();
-});
+	});
 
-$('.ryu').bind('mousedown mouseup',function(){
-	readyToggle();
-	throwingToggle();
-});
+})(jQuery);
 
-$('.ryu').mousedown(function(){
-	hadoukenThrow();
-});
-
-
-// $('.ryu').mousedown(function(){
-// 	console.log('mousedown');
-// 	$('.ryu-ready').toggle();
-// 	$('.ryu-throwing').toggle();
-// 	$('.hadouken').toggle();
-// });
-
-// $('.ryu').mouseup(function(){
-// 	$('.ryu-ready').toggle();
-// 	$('.ryu-throwing').toggle();
-// 	$('.hadouken').toggle();
-// });
-
-});
