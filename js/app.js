@@ -28,7 +28,6 @@
 	$(document).keydown(function(event) {
 		// user presses x
 		if(event.which === 88) {
-			console.log('test keydown '+ event.which);
 			$('.ryu-still,.ryu-ready,.ryu-throwing').hide();
 			$('.ryu-cool').show();
 		}
@@ -37,14 +36,21 @@
 	$(document).keyup(function(event) {
 		// user releases x
 		if(event.which === 88) {
-			console.log('test up '+ event.which);
-			$('.ryu-still').show();
 			$('.ryu-cool').hide();
+			if($(this).click(':hover')) {
+				console.log('if happened');
+				$('.ryu-ready').show();
+				$('.ryu-still').hide();
+			} else {
+				console.log('else happened');
+				$('.ryu-ready').hide();
+				$('.ryu-still').show();
+			}
 		}
 	});
 
 	function playHadouken() {
-		$('#hadouken-sound')[0].volume = 0.05;
+		$('#hadouken-sound')[0].volume = 0.00;
 		$('#hadouken-sound')[0].load();
 		$('#hadouken-sound')[0].play();
 	}
