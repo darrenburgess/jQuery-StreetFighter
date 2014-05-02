@@ -37,12 +37,10 @@
 		// user releases x
 		if(event.which === 88) {
 			$('.ryu-cool').hide();
-			if($(this).click(':hover')) {
-				console.log('if happened');
+			if($('.ryu').is(':hover')) {
 				$('.ryu-ready').show();
 				$('.ryu-still').hide();
 			} else {
-				console.log('else happened');
 				$('.ryu-ready').hide();
 				$('.ryu-still').show();
 			}
